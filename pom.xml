@@ -8,6 +8,7 @@
     <name>Scala Fundamentals course from Coursera</name>
 
     <modules>
+        <module>sandbox</module>
     </modules>
 
     <build>
@@ -102,6 +103,11 @@
             <artifactId>scala-library</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.9.0</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
@@ -114,6 +120,11 @@
                 <groupId>org.scala-lang</groupId>
                 <artifactId>scala-library</artifactId>
                 <version>2.9.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest_2.9.0</artifactId>
+                <version>1.8</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
