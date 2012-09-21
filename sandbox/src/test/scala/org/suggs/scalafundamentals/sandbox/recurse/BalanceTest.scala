@@ -1,4 +1,4 @@
-package org.suggs.scalafundamentals.sandbox
+package org.suggs.scalafundamentals.sandbox.recurse
 
 import org.scalatest.FunSuite
 import org.junit.runner.RunWith
@@ -10,9 +10,9 @@ import org.scalatest.junit.JUnitRunner
  * Time: 5:41 PM
  */
 @RunWith(classOf[JUnitRunner])
-class RecusionSuite extends FunSuite {
+class BalanceTest extends FunSuite {
 
-  import Recusion.balance
+  import Balance.balance
 
   test("see '((()))' as balanced") {
     expect(true) {

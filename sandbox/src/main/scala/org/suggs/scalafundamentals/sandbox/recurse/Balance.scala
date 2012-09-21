@@ -1,11 +1,11 @@
-package org.suggs.scalafundamentals.sandbox
+package org.suggs.scalafundamentals.sandbox.recurse
 
 /**
  * User: suggitpe
  * Date: 9/20/12
  * Time: 5:41 PM
  */
-object Recusion {
+object Balance {
 
   def balance(chars: List[Char]): Boolean = {
 
