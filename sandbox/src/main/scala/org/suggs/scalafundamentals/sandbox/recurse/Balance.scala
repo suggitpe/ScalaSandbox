@@ -30,7 +30,7 @@ object Balance {
       }
     }
 
-    evaluateList(chars, 0) == 0
+    evaluateList(chars.filter(p => (p == '(' || p ==')')), 0) == 0
   }
 
 
