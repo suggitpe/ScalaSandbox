@@ -9,18 +9,28 @@ object Balance {
 
   def balance(chars: List[Char]): Boolean = {
 
-    def checkBrackets(sublist: List[Char]): Boolean = {
-
-      if (sublist.isEmpty)
-        true
-      else if (sublist.head == '(' && sublist.reverse.head == ')') {
-        checkBrackets(sublist.tail.reverse.tail.reverse)
-      }
+    def getParenthesisValueOf(char: Char): Int = {
+      if (char == '(')
+        1
+      else if (char == ')')
+        -1
       else
-        false
+        0
     }
 
-    checkBrackets(chars.filter(p => (p == '(' || p == ')')))
+    def evaluateList(sublist: List[Char], count: Int): Int = {
+      if (!sublist.isEmpty) {
+        if (count < 0) {
+          Int.MaxValue
+        }
+        else
+          evaluateList(sublist.tail, count + getParenthesisValueOf(sublist.head))
+      } else {
+        count
+      }
+    }
+
+    evaluateList(chars, 0) == 0
   }
 
 
