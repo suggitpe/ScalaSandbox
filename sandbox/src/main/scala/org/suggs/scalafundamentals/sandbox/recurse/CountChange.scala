@@ -8,29 +8,8 @@ package org.suggs.scalafundamentals.sandbox.recurse
 object CountChange {
 
   def countChange(money: Int, coins: List[Int]): Int = {
-
-    def calcChange(moneyLeftOver: Int, coinsLeftOver: List[Int]): Int = {
-
-      def foundValidCombination(): Boolean = moneyLeftOver == 0
-
-      if (foundValidCombination) {
-        1
-      }
-      else if (moneyLeftOver < 0 || coinsLeftOver.isEmpty) {
-        0
-      }
-      else {
-        calcChange(moneyLeftOver - coinsLeftOver.head, coinsLeftOver) + calcChange(moneyLeftOver, coinsLeftOver.tail)
-      }
-    }
-
-    if (money == 0) {
-      1
-    }
-    else {
-      calcChange(money, coins.sortBy(_.intValue).reverse)
-    }
-
+    if (money == 0) 1
+    else if (money < 0 || coins.isEmpty) 0
+    else countChange(money - coins.head, coins) + countChange(money, coins.tail)
   }
-
 }
