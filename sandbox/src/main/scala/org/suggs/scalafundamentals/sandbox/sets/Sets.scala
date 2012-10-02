@@ -15,6 +15,8 @@ object Sets {
    */
   type Set = Int => Boolean
 
+  def emptySet: Set = x => false
+
   /**
    * Indicates whether a set contains a given element.
    */
@@ -58,23 +60,41 @@ object Sets {
    */
   def forall(s: Set, p: Int => Boolean): Boolean = {
     def iter(a: Int): Boolean = {
-      if (!s(a)) false
-      else if (p(a)) true
-      else iter(???)
+      if (contains(s, a) && !p(a))
+        false
+      else if (a > bound)
+        true
+      else
+        iter(a + 1)
     }
-    iter()
+    iter(bound * -1)
   }
 
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-  //def exists(s: Set, p: Int => Boolean): Boolean = ???
+  def exists(s: Set, p: Int => Boolean): Boolean = !forall(s, x => !p(x))
+
+  def empty(s: Set): Boolean =
+    !exists(s, x => s(x))
+
+  def setEquals(s: Set, t: Set): Boolean = {
+    empty(diff(s, t)) && empty(diff(t,s))
+  }
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
    */
-  //def map(s: Set, f: Int => Int): Set = ???
+  def map(s: Set, f: Int => Int): Set = {
+
+    def iter(a: Int, retSet: Set): Set = {
+      if (a > bound) retSet
+      else if (contains(s, a)) iter(a + 1, union(retSet, singletonSet(f(a))))
+      else iter(a + 1, retSet)
+    }
+    iter(bound * -1, x => false)
+  }
 
   /**
    * Displays the contents of a set

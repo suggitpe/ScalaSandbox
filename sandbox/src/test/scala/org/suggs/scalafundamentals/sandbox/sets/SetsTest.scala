@@ -48,177 +48,144 @@ class SetsTest extends FunSuite{
 
     import Sets._
 
-    test("contains is implemented") {
-      assert(contains(x => true, 100))
-    }
+  test("contains is implemented") {
+    assert(contains(x => true, 100))
+  }
+
+  /**
+   * When writing tests, one would often like to re-use certain values for multiple
+   * tests. For instance, we would like to create an Int-set and have multiple test
+   * about it.
+   *
+   * Instead of copy-pasting the code for creating the set into every test, we can
+   * store it in the test class using a val:
+   *
+   *   val s1 = singletonSet(1)
+   *
+   * However, what happens if the method "singletonSet" has a bug and crashes? Then
+   * the test methods are not even executed, because creating an instance of the
+   * test class fails!
+   *
+   * Therefore, we put the shared values into a separate trait (traits are like
+   * abstract classes), and create an instance inside each test method.
+   *
+   */
+
+  trait TestSets {
+    val s1 = singletonSet(1)
+    val s2 = singletonSet(2)
+    val s3 = singletonSet(3)
+  }
+
+  def same(s1: Set, s2: Set): Boolean =
+  {
+    diff(s1, s2) == diff(s2, s1)
+  }
+
+  /**
+   * This test is currently disabled (by using "ignore") because the method
+   * "singletonSet" is not yet implemented and the test would fail.
+   *
+   * Once you finish your implementation of "singletonSet", exchange the
+   * function "ignore" by "test".
+   */
+  test("singletonSet(1) contains 1") {
 
     /**
-     * When writing tests, one would often like to re-use certain values for multiple
-     * tests. For instance, we would like to create an Int-set and have multiple test
-     * about it.
-     *
-     * Instead of copy-pasting the code for creating the set into every test, we can
-     * store it in the test class using a val:
-     *
-     *   val s1 = singletonSet(1)
-     *
-     * However, what happens if the method "singletonSet" has a bug and crashes? Then
-     * the test methods are not even executed, because creating an instance of the
-     * test class fails!
-     *
-     * Therefore, we put the shared values into a separate trait (traits are like
-     * abstract classes), and create an instance inside each test method.
-     *
+     * We create a new instance of the "TestSets" trait, this gives us access
+     * to the values "s1" to "s3".
      */
-
-    trait TestSets {
-      val s1 = singletonSet(1)
-      val s2 = singletonSet(2)
-      val s3 = singletonSet(3)
-    }
-
-    def same(s1: Set, s2: Set): Boolean =
-    {
-      diff(s1, s2) == diff(s2, s1)
-    }
-
-    /**
-     * This test is currently disabled (by using "ignore") because the method
-     * "singletonSet" is not yet implemented and the test would fail.
-     *
-     * Once you finish your implementation of "singletonSet", exchange the
-     * function "ignore" by "test".
-     */
-    test("singletonSet(1) contains 1") {
-
+    new TestSets {
       /**
-       * We create a new instance of the "TestSets" trait, this gives us access
-       * to the values "s1" to "s3".
+       * The string argument of "assert" is a message that is printed in case
+       * the test fails. This helps identifying which assertion failed.
        */
-      new TestSets {
-        /**
-         * The string argument of "assert" is a message that is printed in case
-         * the test fails. This helps identifying which assertion failed.
-         */
-        assert(contains(s1, 1), "Singleton")
-      }
+      assert(contains(s1, 1), "Singleton")
     }
+  }
 
-    test("union contains all elements") {
-      new TestSets {
-        val s = union(s1, s2)
-        assert(contains(s, 1), "Union 1")
-        assert(contains(s, 2), "Union 2")
-        assert(!contains(s, 3), "Union 3")
-      }
+  test("union contains all elements") {
+    new TestSets {
+      assert(setEquals(union(s1, s2), Set(1, 2)))
     }
+  }
 
-    test("intersection of {1,3,4,5,7,1000} and {1,2,3,4}") {
-      val s = intersect(Set(1, 3, 4, 5, 7, 1000), Set(1, 2, 3, 4))
-      //printSet(s)
+  test("intersection of {1,3,4,5,7,1000} and {1,2,3,4}") {
+    val s = intersect(Set(1, 3, 4, 5, 7, 1000), Set(1, 2, 3, 4))
+    assert(setEquals(s, Set(1, 3, 4)))
+  }
 
-      assert(contains(s, 1), "intersect 1")
-      assert(!contains(s, 2), "intersect 2")
-      assert(contains(s, 3), "intersect 3")
-      assert(contains(s, 4), "intersect 4")
-      assert(!contains(s, 5), "intersect 5")
-      assert(!contains(s, 7), "intersect 7")
-      assert(!contains(s, 1000), "intersect 1000")
+  test("intersection of {1,2,3,4} and {-1000,0}") {
+    val s = intersect(Set(1, 2, 3, 4), Set(-1000, 0))
+    assert(setEquals(s, emptySet))
+  }
 
-    }
+  test("diff of {1,3,4,5,7,1000} and {1,2,3,4}") {
+    val s = diff(Set(1, 3, 4, 5, 7, 1000), Set(1, 2, 3, 4))
+    assert(setEquals(s, Set(5, 7, 1000)))
+  }
 
-    test("intersection of {1,2,3,4} and {-1000,0}") {
-      val s = intersect(Set(1, 2, 3, 4), Set(-1000, 0))
-      //printSet(s)
+  test("diff of {1,2,3,4} and {-1000,0}") {
+    val s = diff(Set(1, 2, 3, 4), Set(-1000, 0))
+    assert(setEquals(s, Set(1, 2, 3, 4)))
+  }
 
-      assert(!contains(s, 1), "intersect 1")
-      assert(!contains(s, 2), "intersect 2")
-      assert(!contains(s, 3), "intersect 3")
-      assert(!contains(s, 4), "intersect 4")
-      assert(!contains(s, 0), "intersect 0")
-      assert(!contains(s, -1000), "intersect -1000")
-    }
+  test("filter of {1,3,4,5,7,1000} for _ < 5") {
+    val s = filter(Set(1, 3, 4, 5, 7, 1000), _ < 5)
+    assert(setEquals(s, Set(1, 3, 4)))
+  }
 
-    test("diff of {1,3,4,5,7,1000} and {1,2,3,4}") {
-      val s = diff(Set(1, 3, 4, 5, 7, 1000), Set(1, 2, 3, 4))
-      //printSet(s)
+  test("forall: {1,3,4,5,7,1000}") {
 
-      assert(!contains(s, 1), "diff 1")
-      assert(!contains(s, 2), "diff 2")
-      assert(!contains(s, 3), "diff 3")
-      assert(!contains(s, 4), "diff 4")
-      assert(contains(s, 5), "diff 5")
-      assert(contains(s, 7), "diff 7")
-      assert(contains(s, 1000), "diff 1000")
-    }
+  }
 
-    test("diff of {1,2,3,4} and {-1000,0}") {
-      val s = diff(Set(1, 2, 3, 4), Set(-1000, 0))
-      //printSet(s)
+  // All elements in the set are strictly less than 5
+  test("forall: {1,2,3,4}") {
+    assert(forall(Set(1, 2, 3, 4), _ < 5))
+  }
 
-      assert(contains(s, 1), "diff 1")
-      assert(contains(s, 2), "diff 2")
-      assert(contains(s, 3), "diff 3")
-      assert(contains(s, 4), "diff 4")
-      assert(!contains(s, 0), "diff 0")
-      assert(!contains(s, -1000), "diff -1000")
-    }
+  // All elements in the set are strictly less than 1000
+  test("forall: {-1000,0}") {
+    assert(forall(Set(-1000, 0), _ < 1000))
+  }
 
-    test("filter of {1,3,4,5,7,1000} for _ < 5") {
-      val s = filter(Set(1, 3, 4, 5, 7, 1000), _ < 5)
-      //printSet(s)
+  // The set of all even numbers should contain only even numbers
+  test("forall & filter: even") {
+    assert(forall(Set(2, 4, 6, 8, 10, 22), _ % 2 == 0))
+  }
 
-      assert(contains(s, 1), "filter 1")
-      assert(contains(s, 3), "filter 3")
-      assert(contains(s, 4), "filter 4")
-      assert(!contains(s, 5), "filter 5")
-      assert(!contains(s, 7), "filter 7")
-      assert(!contains(s, 1000), "filter 1000")
-      assert(!contains(s, -900), "filter -900")
-    }
+  // 2 shouldn't exist in the given set
+  test("exists: given {1,3,4,5,7,1000}") {
+    assert(!exists(Set(1, 3, 4, 5, 7, 1000), _ == 2))
+  }
 
-    test("forall: {1,3,4,5,7,1000}") {
+  // 2 should exist in the given set
+  test("exists: given {1,2,3,4}") {
+    assert(exists(Set(1, 2, 3, 4), _ == 2))
+  }
 
-    }
+  test("two same sets are the same") {
+    assert(setEquals(Set(1, 2, 3, 4), Set(1, 2, 3, 4)))
+  }
 
-    // All elements in the set are strictly less than 5
-    test("forall: {1,2,3,4}") {
-      assert(forall(Set(1, 2, 3, 4), _ < 5))
-    }
+  test("two different sets are not the same") {
+    assert(!setEquals(Set(1, 2, 3, 4, 5), Set(1, 2, 3, 4)))
+  }
 
-    // All elements in the set are strictly less than 1000
-    test("forall: {-1000,0}") {
-      //assert(forall(Set(-1000, 0), _ < 1000))
-    }
+  //The set of all even numbers should not contain odd element
+  test("exists & filter: even") {}
 
-    // The set of all even numbers should contain only even numbers
-    test("forall & filter: even") {
-      //assert(forall(Set(2, 4, 6, 8, 10, 22), _ % 2 == 0))
-    }
+  // The set of all even numbers and 3 should contain an odd element, namely 3
+  test("exists & filter: even and 3") {}
 
-    // 2 shouldn't exist in the given set
-    test("exists: given {1,3,4,5,7,1000}") {
-      //assert(!exists(Set(1, 3, 4, 5, 7, 1000), _ == 2))
-    }
+  test("map: {1,3,4,5,7,1000}") {
+    val s = map(Set(1, 3, 4, 5, 7, 1000), x => x * x)
+    assert(setEquals(s, Set(1,9,16,25,49,1000000)))
+  }
 
-    // 2 should exist in the given set
-    test("exists: given {1,2,3,4}") {
-      //assert(exists(Set(1, 2, 3, 4), _ == 2))
-    }
+  test("forall & map: doubling numbers") {}
 
-    //The set of all even numbers should not contain odd element
-    test("exists & filter: even") {}
-
-    // The set of all even numbers and 3 should contain an odd element, namely 3
-    test("exists & filter: even and 3") {}
-
-    test("map: {1,3,4,5,7,1000}") {}
-
-    test("forall & map: doubling numbers") {}
-
-    test("exists should be implemented in terms of forall") {}
-
-
-
+  test("exists should be implemented in terms of forall") {}
 
 }
+
