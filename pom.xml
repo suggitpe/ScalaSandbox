@@ -9,6 +9,7 @@
 
     <modules>
         <module>sandbox</module>
+        <module>sandbox-play</module>
     </modules>
 
     <build>
