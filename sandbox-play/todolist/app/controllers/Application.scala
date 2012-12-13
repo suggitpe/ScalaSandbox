@@ -6,10 +6,16 @@ import play.api.data.Forms._
 import models.Task
 
 
+/*
+ * This is the main application context and is fed through the routes
+ * file.  In this instance we have bound all of the routes to Actions
+ * to execute into the core task object.
+ * This class is really responsible for all of the HTTP stuff and basic
+ * error processing.
+ */
 object Application extends Controller {
 
   val taskForm = Form("label" -> nonEmptyText)
-
 
   def index = Action(Redirect(routes.Application.tasks()))
 
@@ -26,7 +32,7 @@ object Application extends Controller {
       )
   }
 
-  def deleteTask(id: Long) = Action{
+  def deleteTask(id: Long) = Action {
     Task.delete(id)
     Redirect(routes.Application.tasks)
   }

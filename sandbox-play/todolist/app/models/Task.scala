@@ -4,10 +4,17 @@ import anorm.SqlParser._
 import anorm._
 import play.api.db._
 import play.api.Play.current
-import akka.actor.FSM.->
 
+/**
+ * This class manages the core task object and allows it to be persisted
+ *
+ */
 case class Task(id: Long, label: String)
 
+/**
+ * This object class allows us to persist Task objects into the database
+ * through some static means.
+ */
 object Task {
 
   val task = {
@@ -23,13 +30,16 @@ object Task {
   }
 
   def create(toDoLabel: String) {
-    DB.withConnection{ implicit c =>
-      SQL("insert into task (label) values ({label})").on('label -> toDoLabel).executeUpdate()
+    DB.withConnection {
+      implicit c =>
+        SQL("insert into task (label) values ({label})").on('label -> toDoLabel).executeUpdate()
     }
   }
+
   def delete(aTaskId: Long) {
-    DB.withConnection{ implicit c =>
-      SQL("delete from task where id = {taskId}").on('taskId -> aTaskId).executeUpdate()
+    DB.withConnection {
+      implicit c =>
+        SQL("delete from task where id = {taskId}").on('taskId -> aTaskId).executeUpdate()
     }
   }
 
