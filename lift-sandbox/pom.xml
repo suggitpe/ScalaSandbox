@@ -9,9 +9,9 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>play-sandbox</artifactId>
+    <artifactId>lift-sandbox</artifactId>
     <packaging>pom</packaging>
-    <name>Play Sandbox</name>
+    <name>Lift Sandbox</name>
 
 
     <dependencies>
