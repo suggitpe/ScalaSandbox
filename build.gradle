@@ -1,0 +1,23 @@
+subprojects {
+
+    apply plugin: 'scala'
+    apply plugin: 'maven'
+    apply plugin: 'idea'
+
+    group = 'org.suggs.katas'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+    }
+
+    version = 1.0
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+}
+
