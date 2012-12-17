@@ -10,13 +10,5 @@ resolvers ++= Seq (
     "Java.net Maven2 Repo" at "http://download.java.net/maven/2"
 )
 
-libraryDependencies ++= {
-    val liftVersion = "2.4"
-    Seq(
-        "net.liftweb" %% "lift-webkit" % liftVersion % "compile->default"
-    )
-}
-
-
 
 
