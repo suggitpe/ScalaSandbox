@@ -12,6 +12,8 @@ libraryDependencies += "junit" % "junit" % "4.5" % "test->default"
 
 libraryDependencies += "javax.servlet" % "servlet-api" % "2.5" % "provided->default"
 
+libraryDependencies += "net.liftweb" %% "lift-mapper" % "2.4" % "compile->default"
+
 libraryDependencies += "com.h2database" % "h2" % "1.2.138"
 
 libraryDependencies += "ch.qos.logback" % "logback-classic" % "0.9.26" % "compile->default"

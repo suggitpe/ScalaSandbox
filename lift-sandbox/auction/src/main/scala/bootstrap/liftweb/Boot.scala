@@ -13,7 +13,7 @@ class Boot {
     
   
     // where to search snippet
-    LiftRules.addToPackages("org.suggs.sanbox.auction")
+    LiftRules.addToPackages("org.suggs.sandbox.auction")
 
     // build sitemap
     val entries = (List(Menu("Home") / "index") :::
