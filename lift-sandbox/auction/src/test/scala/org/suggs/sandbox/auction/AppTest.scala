@@ -1,4 +1,4 @@
-package org.suggs.sanbox.auction {
+package org.suggs.sandbox.auction
 
 import java.io.File
 import junit.framework._
@@ -74,5 +74,4 @@ class AppTest extends TestCase("app") {
       fail(msg)
     }
   }
-}
 }
