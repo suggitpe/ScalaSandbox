@@ -41,6 +41,15 @@ LIFT (2.x) Summary
 	==================
  - to test that the build process is put together correctly you can start SBT in REPL form (run sbt in the root of the project) and the type lifty and tab.  If it starts to auto-complete you know you are all set up.  For some reason it does not show on the tasks listing.
 
-3. Create the basic lift application
- - start sbt in the REPL form and run the following:
-    lifty create 
+3. Lifty navigation
+ - all the below assumes you are in teh lift REPL
+ - to do anything with lifty you need to 'learn' templates
+ - lifty's initial set of templates can be learned with:
+    [lifty learn lift https://raw.github.com/Lifty/lifty/master/lifty-recipe/lifty.json]
+ - you can un-learn/delete the lift template with:
+    [lifty delete lift]
+ - you can then create a new project using:
+    [lifty create lift project]
+    [reload]
+ - and then start/stop the project with
+    [container:start] and [container:stop]
