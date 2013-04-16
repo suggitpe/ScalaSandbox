@@ -2,4 +2,6 @@ resolvers += Resolver.url("sbt-plugin-releases", new URL("http://scalasbt.artifa
 
 addSbtPlugin("org.lifty" % "lifty" % "1.7.4")
 
-addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.3.0-SNAPSHOT")
+//resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
+
+//addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.3.0")
