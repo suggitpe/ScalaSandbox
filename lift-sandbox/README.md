@@ -25,6 +25,6 @@ LIFT (2.x) Summary
 -------------------------
 # 3. Build a basic CRUD based web application using Lift
 
-### 3.1 [Build a basic Lift webapp and see it running locally](docs/BuildInitialDefaulLiftWebapp.md)
+**3.1** [Build a basic Lift webapp and see it running locally](docs/BuildInitialDefaulLiftWebapp.md)
 
 -------------------
