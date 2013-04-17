@@ -31,15 +31,15 @@ Erata
  - create an empty directory called the project you want
  - create a dir called project and in there create a file called build.properties
  - define the sbt version in there, note we are using version 0.11.2 as the lifty plugin version only works with this version
-	sbt.version=0.11.2
+    sbt.version=0.11.2
  - create a file called plugins.sbt and in the add the following (empty line separated):
-	resolvers += Resolver.url("sbt-plugin-releases", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
-	addSbtPlugin("org.lifty" % "lifty" % "1.7.4")
-	addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
+    resolvers += Resolver.url("sbt-plugin-releases", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
+    addSbtPlugin("org.lifty" % "lifty" % "1.7.4")
+    addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
  - now in the root of the project create a file called build.sbt and in there put the following (empty line separated):
-	name := "Static Data GUI"
-	version := "1.0"
-	scalaVersion := "2.10.0"
+    name := "Static Data GUI"
+    version := "1.0"
+    scalaVersion := "2.10.0"
  - to test that the build process is put together correctly you can start SBT in REPL form (run sbt in the root of the project) and the type lifty and tab.  If it starts to auto-complete you know you are all set up.  For some reason it does not show on the tasks listing.
 
 3. Lifty navigation
