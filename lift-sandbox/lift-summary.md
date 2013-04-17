@@ -1,11 +1,15 @@
 LIFT (2.x) Summary
+================================
 
-####################################################
-0. Erata
+
+
+Erata
+-------------------------
  - project started in 2009
 
-####################################################
-1. Takes a view-first model:
+1. behind the scenes
+-------------------------
+ - Takes a view-first model
  - traditional model uses the controllers to work out which view to allocate (see spring MVC)
  - Lift is opposite in that first selects the view and then resolves the content
  - comprises three key parts: view, snippet and model (VSM)
@@ -21,31 +25,25 @@ LIFT (2.x) Summary
     - Lift Persistence: Lift ORM (Mapper); JPA support (note mutable); Record (functional CRUD module)
     - Lift Modules: extensions such as queuing (AMQP); transations (JTA); Lift state machine; OAuth; Paypal/facebook; etc etc
 
-####################################################
 2. Basic project construction ready for Lift
+-------------------------
  - a word of warning there is a whole world of versioning pain out there if you are not careful.  You need to make sure that the plugin you want to use is compatable with the version of SBT you are using.  When you have plugins that need different versions of plugins to need to have the checked on one set to the one that most developers will use all the time.
  - create an empty directory called the project you want
  - create a dir called project and in there create a file called build.properties
  - define the sbt version in there, note we are using version 0.11.2 as the lifty plugin version only works with this version
-	==================
 	sbt.version=0.11.2
-	==================
  - create a file called plugins.sbt and in the add the following (empty line separated):
-	==================
 	resolvers += Resolver.url("sbt-plugin-releases", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
 	addSbtPlugin("org.lifty" % "lifty" % "1.7.4")
 	addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
-	==================
  - now in the root of the project create a file called build.sbt and in there put the following (empty line separated):
-	==================
 	name := "Static Data GUI"
 	version := "1.0"
 	scalaVersion := "2.10.0"
-	==================
  - to test that the build process is put together correctly you can start SBT in REPL form (run sbt in the root of the project) and the type lifty and tab.  If it starts to auto-complete you know you are all set up.  For some reason it does not show on the tasks listing.
 
-####################################################
 3. Lifty navigation
+-------------------------
  - all the below assumes you are in teh lift REPL
  - to do anything with lifty you need to 'learn' templates
  - lifty's initial set of templates can be learned with:
@@ -60,8 +58,8 @@ LIFT (2.x) Summary
  - and then start/stop the project with
     [container:start] and [container:stop]
 
-####################################################
 4. Create the basic web app project
+-------------------------
  - from the REPL run
     [lifty create lift project]
  - accept the default for the version of lift
@@ -73,8 +71,4 @@ LIFT (2.x) Summary
  - reload with [reload]
  - then start it with [container:start]
  - navigate to http://localhost:8080 and then see the default application
-
-####################################################
-5. 
-
 
