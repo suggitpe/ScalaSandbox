@@ -73,6 +73,6 @@
         > reload
         > container:start
 
- - navigate to http://localhost:8080 and then see the default application
+ - navigate to [localhost:8080](http://localhost:8080) and then see the default application
 
 -------------------
