@@ -1,8 +1,10 @@
 LIFT (2.x) Summary
 
+####################################################
 0. Erata
  - project started in 2009
 
+####################################################
 1. Takes a view-first model:
  - traditional model uses the controllers to work out which view to allocate (see spring MVC)
  - Lift is opposite in that first selects the view and then resolves the content
@@ -19,6 +21,7 @@ LIFT (2.x) Summary
     - Lift Persistence: Lift ORM (Mapper); JPA support (note mutable); Record (functional CRUD module)
     - Lift Modules: extensions such as queuing (AMQP); transations (JTA); Lift state machine; OAuth; Paypal/facebook; etc etc
 
+####################################################
 2. Basic project construction ready for Lift
  - a word of warning there is a whole world of versioning pain out there if you are not careful.  You need to make sure that the plugin you want to use is compatable with the version of SBT you are using.  When you have plugins that need different versions of plugins to need to have the checked on one set to the one that most developers will use all the time.
  - create an empty directory called the project you want
@@ -41,11 +44,14 @@ LIFT (2.x) Summary
 	==================
  - to test that the build process is put together correctly you can start SBT in REPL form (run sbt in the root of the project) and the type lifty and tab.  If it starts to auto-complete you know you are all set up.  For some reason it does not show on the tasks listing.
 
+####################################################
 3. Lifty navigation
  - all the below assumes you are in teh lift REPL
  - to do anything with lifty you need to 'learn' templates
  - lifty's initial set of templates can be learned with:
     [lifty learn lift https://raw.github.com/Lifty/lifty/master/lifty-recipe/lifty.json]
+ - to list out the available templates with:
+    [lifty templates lift]
  - you can un-learn/delete the lift template with:
     [lifty delete lift]
  - you can then create a new project using:
@@ -53,3 +59,22 @@ LIFT (2.x) Summary
     [reload]
  - and then start/stop the project with
     [container:start] and [container:stop]
+
+####################################################
+4. Create the basic web app project
+ - from the REPL run
+    [lifty create lift project]
+ - accept the default for the version of lift
+ - give the base package, eg org.suggs.sandbox.web.staticdatagui
+ - set the project name, eg static-data-gui
+ - set the version of scala ... suggest accept defaults
+ - accept defaults for the project
+ - agree to the overrides of the build and plugin files we created earlier
+ - reload with [reload]
+ - then start it with [container:start]
+ - navigate to http://localhost:8080 and then see the default application
+
+####################################################
+5. 
+
+
