@@ -31,7 +31,9 @@ Erata
  - create an empty directory called the project you want
  - create a dir called project and in there create a file called build.properties
  - define the sbt version in there, note we are using version 0.11.2 as the lifty plugin version only works with this version
-    sbt.version=0.11.2
+
+        sbt.version=0.11.2
+
  - create a file called plugins.sbt and in the add the following (empty line separated):
     resolvers += Resolver.url("sbt-plugin-releases", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
     addSbtPlugin("org.lifty" % "lifty" % "1.7.4")
