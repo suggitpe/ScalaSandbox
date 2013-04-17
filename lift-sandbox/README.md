@@ -1,8 +1,6 @@
 LIFT (2.x) Summary
 ================================
 
-
-
 Erata
 -------------------------
  - project started in 2009
@@ -79,14 +77,20 @@ Erata
 4. Create the basic web app project
 -------------------------
  - from the REPL run
-    [lifty create lift project]
+
+        > lifty create lift project
+
  - accept the default for the version of lift
  - give the base package, eg org.suggs.sandbox.web.staticdatagui
  - set the project name, eg static-data-gui
  - set the version of scala ... suggest accept defaults
  - accept defaults for the project
  - agree to the overrides of the build and plugin files we created earlier
- - reload with [reload]
- - then start it with [container:start]
+ - you now have a generated the basic application
+ - reload and start with
+
+        > reload
+        > container:start
+
  - navigate to http://localhost:8080 and then see the default application
 
