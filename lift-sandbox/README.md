@@ -40,8 +40,6 @@ Erata
 
         addSbtPlugin("org.lifty" % "lifty" % "1.7.4")
 
-        addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
-
  - now in the root of the project create a file called build.sbt and in there put the following (empty line separated):
 
         name := "Static Data GUI"
@@ -58,26 +56,25 @@ Erata
  - to do anything with lifty you need to 'learn' templates
  - lifty's initial set of templates can be learned with:
 
-        lifty learn lift https://raw.github.com/Lifty/lifty/master/lifty-recipe/lifty.json
+        > lifty learn lift https://raw.github.com/Lifty/lifty/master/lifty-recipe/lifty.json
 
  - to list out the available templates with:
 
-    > lifty templates lift
+        > lifty templates lift
 
  - you can un-learn/delete the lift template with:
 
-    > lifty delete lift
+        > lifty delete lift
 
  - you can then create a new project using:
 
-    > lifty create lift project
-    > reload
+        > lifty create lift project
+        > reload
 
  - and then start/stop the project with
 
-    > container:start 
-     
-    > container:stop
+        > container:start 
+        > container:stop
 
 4. Create the basic web app project
 -------------------------
