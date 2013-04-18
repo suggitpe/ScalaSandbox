@@ -1,6 +1,5 @@
 # Build a basic Lift web-app and see it running locally
 
--------------------------
 ## 1. Define global settings for using Lifty plugin
 
  - Lifty is a project generation plugin, and as such if we define the plugin in the scope of a project it will be overridden.
@@ -12,7 +11,6 @@
 
         addSbtPlugin("org.lifty" % "lifty" % "1.7.4")
 
--------------------------
 ## 2. Basic project construction ready for Lift
 
  - A word of warning there is a whole world of versioning pain out there if you are not careful.  You need to make sure that the plugin you want to use is compatible with the version of SBT you are using.  When you have plugins that need different versions of plugins to need to have the checked on one set to the one that most developers will use all the time.
@@ -24,7 +22,6 @@
 
   - To test that the build process is put together correctly you can start SBT in REPL form (run `sbt` in the root of the project) and the type Lifty and tab.  If it starts to auto-complete you know you are all set up.  For some reason it does not show on the tasks listing.
 
--------------------------
 ## 3. Lifty navigation
 
  - All the below assumes you are in the SBT REPL
@@ -51,7 +48,6 @@
         > container:start 
         > container:stop
 
--------------------------
 ## 4. Create the basic web app project
 
  - From the SBT REPL run
@@ -72,7 +68,6 @@
 
  - Navigate to [localhost:8080](http://localhost:8080) and then see the default application
 
--------------------
 ## 5. Configure for use in a IDE
 ### 5.1 Intellij
  - In the newly created project structure you will find `./project/plugins.sbt`
@@ -92,7 +87,6 @@
 ### 5.2 Eclipse
  - I have forgotten how to use Eclipse (I gave up on it years ago) so hope someone will send me a pull request for details on eclipse
 
--------------------
 ## 6. Git users
 
 - Just for convenience the following is my .gitignore file
@@ -102,5 +96,3 @@
         .idea_modules/
         *.iml
         *.db
-
--------------------

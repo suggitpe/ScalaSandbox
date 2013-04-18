@@ -1,11 +1,9 @@
-LIFT (2.x) Summary
-================================
+# LIFT (2.x) Summary
 
-#  1. Erata
+##  1. Erata
  - the Lift project started in 2009
 
--------------------------
-# 2. Behind the scenes
+## 2. Behind the scenes
  - Takes a view-first model
  - Traditional model uses the controllers to work out which view to allocate (see spring MVC)
  - Lift is opposite in that first selects the view and then resolves the content
@@ -22,9 +20,7 @@ LIFT (2.x) Summary
     - Lift Persistence: Lift ORM (Mapper); JPA support (note mutable); Record (functional CRUD module)
     - Lift Modules: extensions such as queuing (AMQP); transactions (JTA); Lift state machine; OAuth; Paypal/facebook; etc etc
 
--------------------------
-# 3. Build a basic CRUD based web application using Lift
+## 3. Build a basic CRUD based web application using Lift
 
 **3.1** [Build a basic Lift web-app and see it running locally](docs/BuildInitialDefaulLiftWebapp.md)
 
--------------------
