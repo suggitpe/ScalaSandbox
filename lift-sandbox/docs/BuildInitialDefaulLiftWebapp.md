@@ -93,3 +93,14 @@
  - I have forgotten how to use Eclipse (I gave up on it years ago) so hope someone will send me a pull request for details on eclipse
 
 -------------------
+## 6. Git users
+
+- Just for convenience the following is my .gitignore file
+
+        target/
+        .idea/
+        .idea_modules/
+        *.iml
+        *.db
+
+-------------------
