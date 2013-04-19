@@ -11,11 +11,11 @@
 
         > lifty create lift mapper
 
- * You will need to add in the name of the base package (eg `org.suggs.sandbox.web.staticdatagui`)
- * Then give it the name of the domain object (eg `Supplier`)
+ * You will need to add in the name of the base package (e.g. `org.suggs.sandbox.web.staticdatagui`)
+ * Then give it the name of the domain object (e.g. `Supplier`)
  * Finally you will be asked for the internal package (hit enter for the default)
  * If you then look in the model package of your project you will see the Scala class/object combo.
-    * NB if you find that in the IDE the class is not compiling you will need to re-generate your IDE files (eg `gen-idea`)
+    * NB if you find that in the IDE the class is not compiling you will need to re-generate your IDE files (i.e. `gen-idea`)
  * Mapper always works on the basis that for every model object you have a object and a class
     * The class is for the underlying data model class itself 
     * The companion object is for static methods (such as `findAll`)
