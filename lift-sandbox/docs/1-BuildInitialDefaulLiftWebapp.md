@@ -40,7 +40,7 @@
 
  - You can then create a new project using:
 
-        > lifty create lift project
+        > lifty create lift project-blank
         > reload
 
  - And then start/stop the project with
@@ -55,8 +55,8 @@
         > lifty create lift project
 
  - Accept the default for the version of lift
- - Give the base package, eg org.suggs.sandbox.web.staticdatagui
- - Set the project name, eg static-data-gui
+ - Give the base package, eg `org.suggs.sandbox.web.staticdatagui`
+ - Set the project name, eg `static-data-gui`
  - Set the version of Scala ... suggest accept defaults
  - Accept defaults for the project
  - Agree to the overrides of the build and plugin files we created earlier
