@@ -30,8 +30,7 @@
 
         class Supplier extends LongKeyedMapper[Supplier]
             with IdPK
-            with CreatedUpdated
-            with OneToMany[Long, Supplier] {
+            with CreatedUpdated {
             ...
         }
 
