@@ -20,6 +20,12 @@
     * The class is for the underlying data model class itself 
     * The companion object is for static methods (such as `findAll`)
 
+        class Supplier extends LongKeyedMapper[Supplier] {
+            ...
+        }
+
+        object Supplier extends Supplier with LongKeyedMetaMapper[Supplier]
+
 ## 3. Adding attributes to the domain model
  * Once you have added the class to the model package you now need to add attributes to the class.
  * You can optionally define a few additional attributes to the the object for persistence:

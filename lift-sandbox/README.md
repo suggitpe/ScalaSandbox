@@ -24,5 +24,5 @@
 
 **3.1** [Build a basic Lift web-app and see it running locally](docs/1-BuildInitialDefaulLiftWebapp.md)
 
-**3.2** [Build out the database schema with Mapper](docs/2-BuildmapperSchema.md)
+**3.2** [Build out the database schema with Mapper](docs/2-BuildMapperSchema.md)
 
