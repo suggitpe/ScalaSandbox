@@ -21,6 +21,11 @@ with OneToMany[Long, Supplier] {
 
   object tr extends MappedDouble(this)
 
+  object auctions extends MappedOneToMany(Auction, Auction.supplier,
+    OrderBy(Auction.endsAt, Descending))
+  with Owned[Auction]
+  with Cascade[Auction]
+
 }
 
 object Supplier extends Supplier with LongKeyedMetaMapper[Supplier]
