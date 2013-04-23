@@ -3,37 +3,37 @@ package bootstrap.liftweb
 import net.liftweb._
 import http.{LiftRules, NotFoundAsTemplate, ParsePath}
 import sitemap.{SiteMap, Menu}
-import net.liftweb.util.{Props, NamedPF}
-import net.liftweb.mapper.Schemifier
+import net.liftweb.util.NamedPF
+import net.liftweb._
+import mapper.{Schemifier, DB, StandardDBVendor, DefaultConnectionIdentifier}
+import util.Props
 import org.suggs.sandbox.web.auction.model.{Supplier, Auction}
-import net.liftweb.db.{StandardDBVendor, DefaultConnectionIdentifier, DB}
 
 
 class Boot {
   def boot {
 
+
+    if (!DB.jndiJdbcConnAvailable_?) {
+      val vendor =
+        new StandardDBVendor(
+          Props.get("db.driver") openOr "org.h2.Driver",
+          Props.get("db.url") openOr "jdbc:h2:lift_proto.db;AUTO_SERVER=TRUE",
+          Props.get("db.user"),
+          Props.get("db.password"))
+
+      LiftRules.unloadHooks.append(vendor.closeAllConnections_! _)
+
+      DB.defineConnectionManager(DefaultConnectionIdentifier, vendor)
+    }
+    Schemifier.schemify(true, Schemifier.infoF _, Auction, Supplier)
+
     // where to search snippet
     LiftRules.addToPackages("org.suggs.sandbox.web.auction")
 
     // build sitemap
-    val entries = (List(Menu("Home") / "index") :::
+    val entries = (List(Menu("Home") / "index") ::: Nil)
 
-      Nil)
-
-    Schemifier.schemify(true, Schemifier.infoF _, Auction, Supplier)
-
-    if (!DB.jndiJdbcConnAvailable_?) {
-      val databaseContext =
-        new StandardDBVendor(
-          Props.get("db.driver") openOr "org.h2.Driver",
-          Props.get("db.url") openOr "jdbc:h2:database/temp;AUTO_SERVER=TRUE",
-          Props.get("db.user"),
-          Props.get("db.password"))
-
-      DB.defineConnectionManager(DefaultConnectionIdentifier, databaseContext)
-
-      LiftRules.unloadHooks.append(() => databaseContext.closeAllConnections_!())
-    }
 
     LiftRules.uriNotFound.prepend(NamedPF("404handler") {
       case (req, failure) => NotFoundAsTemplate(

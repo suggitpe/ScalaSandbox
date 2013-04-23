@@ -77,17 +77,8 @@ G# Building the Lift database schema with Mapper and Schemifier
 
  * That should be it for the basic relationships
 
-## 5. Binding the model objects into the Lift framework
 
- * Now that we have defined the underlying objects, we can either manage the database schema manually, or we can enlist a schema generation process
- * So we can focus on Lift rather than a data we will use `Schemifier`.  This can be added to the mix by adding the following to the `Boot` class.
-
-        Schemifier.schemify(true, Schemifier.infoF _, Auction, Supplier)
-
- * Key thing from the above is that we are defining all of the tables that we wish to include in the database.
-
-## 6. Build the database connection
-
+## 5. Build the database connection
  * In order to actually connect to and use a database we also need to add in a database connection.
  * In the below code there is a basic snippet that can be altered to fit the relevant database.   Key thing to notice is that it allows a preference of a JNDI configured database.
 
@@ -105,4 +96,15 @@ G# Building the Lift database schema with Mapper and Schemifier
         }
 
  * You can see in the above the use of the `StandardDBVendor` class that will provide a large chunk of defaulted behaviour, including connection pooling/reaping etc.
+
+## 6. Binding the model objects into the Lift framework
+ * Now that we have defined the underlying objects, we can either manage the database schema manually, or we can enlist a schema generation process
+ * So we can focus on Lift rather than a data we will use `Schemifier`.  This can be added to the mix by adding the following to the `Boot` class.
+
+        Schemifier.schemify(true, Schemifier.infoF _, Auction, Supplier)
+
+ * Key thing from the above is that we are defining all of the tables that we wish to include in the database.
+
+## 7. Things to watch out for (that no one tells you about)
+ * If you get exceptions thrown that the JNDI name cannot be found you need to ensure that the db connection is defined before the schemifier in `Boot.scala`
 
