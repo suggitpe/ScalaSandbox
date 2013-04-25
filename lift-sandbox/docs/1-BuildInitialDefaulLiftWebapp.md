@@ -91,7 +91,7 @@ From your project root directory:
  - Download and install Scala IDE from [www.scala-ide.org](http://scala-ide.org/download/current.html).  As Scala 2.9 is being used for this example, make sure you download the right version of Scala IDE (version 2.9 and version 2.10 of Scala can't coexist in the IDE)
  - In the file `./project/plugins.sbt` you need to add the following line to load the "SBT Eclipse" plugin.  Note that this is not the most recent version of the plugin (which is 2.2 at the time of writing) because the current versions of the plugin don't support SBT versions older than 0.11.3.
 
-       addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
+        addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
        
  - This adds the plugin to the SBT environment.
  - Start `sbt` in the root of the project and once it has loaded its dependencies run the following command:
