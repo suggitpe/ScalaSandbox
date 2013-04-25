@@ -74,7 +74,7 @@ From your project root directory:
 ## 5. Configure for use in a IDE
 ### 5.1 Intellij
  - In the newly created project structure you will find `./project/plugins.sbt`
- - In this file add the following to the existing content (NB Lift will have added some plugins to this file):
+ - In this file add the following at the end of the file, making sure you leave a blank line before it.  (NB Lift will have added some plugins to this file)
 
         addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
 
