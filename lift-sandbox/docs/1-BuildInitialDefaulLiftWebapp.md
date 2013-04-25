@@ -5,6 +5,7 @@
  - Lifty is a project generation plugin, and as such if we define the plugin in the scope of a project it will be overridden.
 	- It is worth noting that if you are developing multiple projects you will need to disable this plugin as it will try to be available to all projects and thus run into SBT version issues.
  - First check that the plugins directory exists in your home directory `mkdir -p ~/.sbt/plugins/`
+ - If the directory exists already, check if there are any ".sbt" files already in the directory.  If there are, then for the duration of this exercise, remove them (or rename them using an extension other than ".sbt") to avoid previous SBT configuration interfering with the dependencies for this project.
  - In the plugins directory create a file called plugins.sbt and copy the following into it.
 
         resolvers += Resolver.url("sbt-plugin-releases", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
