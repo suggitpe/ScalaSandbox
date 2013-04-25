@@ -79,14 +79,14 @@ G# Building the Lift database schema with Mapper and Schemifier
 
 
 ## 5. Build the database connection
- * In order to actually connect to and use a database we also need to add in a database connection.
+ * In order to actually connect to and use a database we also need to add in a database connection.  For now we will use the h2 database as it's ridiculouslt simple to get going.  See further below for how to configure Oracle databases.
  * In the below code there is a basic snippet that can be altered to fit the relevant database.   Key thing to notice is that it allows a preference of a JNDI configured database.
 
         if (!DB.jndiJdbcConnAvailable_?) {
           val databaseContext =
             new StandardDBVendor(
               Props.get("db.driver") openOr "org.h2.Driver",
-              Props.get("db.url") openOr "jdbc:h2:lift_proto.db;AUTO_SERVER=TRUE",
+              Props.get("db.url") openOr "jdbc:h2:local_db.db;AUTO_SERVER=TRUE",
               Props.get("db.user"),
               Props.get("db.password"))
 
@@ -108,3 +108,6 @@ G# Building the Lift database schema with Mapper and Schemifier
 ## 7. Things to watch out for (that no one tells you about)
  * If you get exceptions thrown that the JNDI name cannot be found you need to ensure that the db connection is defined before the schemifier in `Boot.scala`
 
+## 8. Configuring an Oracle database
+
+ * TODO: or someone do for me pls?
