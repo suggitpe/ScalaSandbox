@@ -87,8 +87,19 @@ From your project root directory:
  - This will then download the relevant sources/javadoc files and create all the files necessary for the: workspace, project and modules
  - You then just need to open up the project in Intellij and you are there!
 
-### 5.2 Eclipse
- - I have forgotten how to use Eclipse (I gave up on it years ago) so hope someone will send me a pull request for details on eclipse
+### 5.2 Eclipse (Scala IDE)
+ - Download and install Scala IDE from [www.scala-ide.org](http://scala-ide.org/download/current.html).  As Scala 2.9 is being used for this example, make sure you download the right version of Scala IDE (version 2.9 and version 2.10 of Scala can't coexist in the IDE)
+ - In the file `./project/plugins.sbt` you need to add the following line to load the "SBT Eclipse" plugin.  Note that this is not the most recent version of the plugin (which is 2.2 at the time of writing) because the current versions of the plugin don't support SBT 0.11.2.
+
+       addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
+       
+ - This adds the plugin to the SBT environment.
+ - Start `sbt` in the root of the project and once it has loaded its dependencies run the following command:
+
+        > eclipse
+
+ - This will download further dependencies and generate the Eclipse project files (`.project`, `.classpath` and so on)
+ - In Scala IDE, use "File -> Import" to "Import Existing Projects Into Workspace" and browse to your project root directory to load the project.
 
 ## 6. Git users
 
