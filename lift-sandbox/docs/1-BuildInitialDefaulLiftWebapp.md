@@ -51,6 +51,8 @@
 
 ## 4. Create the basic web app project
 
+From your project root directory:
+
  - From the SBT REPL run
 
         > lifty create lift project
@@ -60,7 +62,7 @@
  - Set the project name, eg `static-data-gui`
  - Set the version of Scala ... suggest accept defaults
  - Accept defaults for the project
- - Agree to the overrides of the build and plugin files we created earlier
+ - Agree to the overrides of the build and plugin files we created earlier _Pete: for whatever reason I didn't seem to get this! -- EW._
  - You now have a generated the basic application
  - Reload and start with
 
