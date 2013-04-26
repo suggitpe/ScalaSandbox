@@ -5,6 +5,7 @@
  - Lifty is a project generation plugin, and as such if we define the plugin in the scope of a project it will be overridden.
 	- It is worth noting that if you are developing multiple projects you will need to disable this plugin as it will try to be available to all projects and thus run into SBT version issues.
  - First check that the plugins directory exists in your home directory `mkdir -p ~/.sbt/plugins/`
+ - If the directory exists already, check if there are any ".sbt" files already in the directory.  If there are, then for the duration of this exercise, remove them (or rename them using an extension other than ".sbt") to avoid previous SBT configuration interfering with the dependencies for this project.
  - In the plugins directory create a file called plugins.sbt and copy the following into it.
 
         resolvers += Resolver.url("sbt-plugin-releases", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases/"))(Resolver.ivyStylePatterns)
@@ -50,6 +51,8 @@
 
 ## 4. Create the basic web app project
 
+From your project root directory:
+
  - From the SBT REPL run
 
         > lifty create lift project
@@ -59,7 +62,7 @@
  - Set the project name, eg `static-data-gui`
  - Set the version of Scala ... suggest accept defaults
  - Accept defaults for the project
- - Agree to the overrides of the build and plugin files we created earlier
+ - Agree to the overrides of the build and plugin files we created earlier _Pete: for whatever reason I didn't seem to get this! -- EW._
  - You now have a generated the basic application
  - Reload and start with
 
@@ -71,7 +74,7 @@
 ## 5. Configure for use in a IDE
 ### 5.1 Intellij
  - In the newly created project structure you will find `./project/plugins.sbt`
- - In this file add the following to the existing content (NB Lift will have added some plugins to this file):
+ - In this file add the following at the end of the file, making sure you leave a blank line before it.  (NB Lift will have added some plugins to this file)
 
         addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
 
@@ -84,8 +87,19 @@
  - This will then download the relevant sources/javadoc files and create all the files necessary for the: workspace, project and modules
  - You then just need to open up the project in Intellij and you are there!
 
-### 5.2 Eclipse
- - I have forgotten how to use Eclipse (I gave up on it years ago) so hope someone will send me a pull request for details on eclipse
+### 5.2 Eclipse (Scala IDE)
+ - Download and install Scala IDE from [www.scala-ide.org](http://scala-ide.org/download/current.html).  As Scala 2.9 is being used for this example, make sure you download the right version of Scala IDE (version 2.9 and version 2.10 of Scala can't coexist in the IDE)
+ - In the file `./project/plugins.sbt` you need to add the following line to load the "SBT Eclipse" plugin.  Note that this is not the most recent version of the plugin (which is 2.2 at the time of writing) because the current versions of the plugin don't support SBT versions older than 0.11.3.
+
+        addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse-plugin" % "2.0.0")
+       
+ - This adds the plugin to the SBT environment.
+ - Start `sbt` in the root of the project and once it has loaded its dependencies run the following command:
+
+        > eclipse
+
+ - This will download further dependencies and generate the Eclipse project files (`.project`, `.classpath` and so on)
+ - In Scala IDE, use "File -> Import" to "Import Existing Projects Into Workspace" and browse to your project root directory to load the project.
 
 ## 6. Git users
 
