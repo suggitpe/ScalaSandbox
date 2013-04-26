@@ -62,7 +62,7 @@ From your project root directory:
  - Set the project name, eg `static-data-gui`
  - Set the version of Scala ... suggest accept defaults
  - Accept defaults for the project
- - Agree to the overrides of the build and plugin files we created earlier _Pete: for whatever reason I didn't seem to get this! -- EW._
+ - Agree to the overrides of the build and plugin files we created earlier (Noted that this may not appear)
  - You now have a generated the basic application
  - Reload and start with
 
