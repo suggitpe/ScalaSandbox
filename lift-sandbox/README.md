@@ -26,3 +26,4 @@
 
 **3.2** [Build out the database schema with Mapper](docs/2-BuildMapperSchema.md)
 
+**3.3** [Add in the scaffolding to the webapp](docs/3-Scaffolding.md)
