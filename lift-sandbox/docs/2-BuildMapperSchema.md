@@ -1,4 +1,4 @@
-G# Building the Lift database schema with Mapper and Schemifier
+# Building the Lift database schema with Mapper and Schemifier
 
 ##  1. Add in the Mapper dependency
  * Before we can start to introduce a new schema we need to bring in the library to support this.  The default case for a ORM is `Mapper`.

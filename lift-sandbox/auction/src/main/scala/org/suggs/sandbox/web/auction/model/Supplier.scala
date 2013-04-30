@@ -2,6 +2,10 @@ package org.suggs.sandbox.web.auction.model
 
 import net.liftweb.mapper._
 
+object Supplier extends Supplier with LongKeyedMetaMapper[Supplier] {
+  override def dbTableName = "suppliers"
+}
+
 class Supplier extends LongKeyedMapper[Supplier]
 with IdPK
 with CreatedUpdated
@@ -19,13 +23,9 @@ with OneToMany[Long, Supplier] {
 
   object openingHours extends MappedString(this, 255)
 
-  object tr extends MappedDouble(this)
-
   object auctions extends MappedOneToMany(Auction, Auction.supplier,
     OrderBy(Auction.endsAt, Descending))
   with Owned[Auction]
   with Cascade[Auction]
 
 }
-
-object Supplier extends Supplier with LongKeyedMetaMapper[Supplier]

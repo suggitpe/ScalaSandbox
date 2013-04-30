@@ -2,6 +2,10 @@ package org.suggs.sandbox.web.auction.model
 
 import net.liftweb.mapper._
 
+object Auction extends Auction with LongKeyedMetaMapper[Auction] {
+  override def dbTableName = "auctions"
+}
+
 class Auction extends LongKeyedMapper[Auction]
 with IdPK
 with CreatedUpdated {
@@ -31,5 +35,3 @@ with CreatedUpdated {
   }
 
 }
-
-object Auction extends Auction with LongKeyedMetaMapper[Auction]

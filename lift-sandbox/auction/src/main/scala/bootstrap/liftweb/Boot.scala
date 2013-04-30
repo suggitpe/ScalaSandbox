@@ -7,7 +7,7 @@ import net.liftweb.util.NamedPF
 import net.liftweb._
 import mapper.{Schemifier, DB, StandardDBVendor, DefaultConnectionIdentifier}
 import util.Props
-import org.suggs.sandbox.web.auction.model.{Supplier, Auction}
+import org.suggs.sandbox.web.auction.model._
 
 
 class Boot {
@@ -26,13 +26,15 @@ class Boot {
 
       DB.defineConnectionManager(DefaultConnectionIdentifier, vendor)
     }
-    Schemifier.schemify(true, Schemifier.infoF _, Auction, Supplier)
+    Schemifier.schemify(true, Schemifier.infoF _, Auction, Bid, Customer, Order, OrderAuction, Supplier)
 
     // where to search snippet
     LiftRules.addToPackages("org.suggs.sandbox.web.auction")
 
     // build sitemap
-    val entries = (List(Menu("Home") / "index") ::: Nil)
+    val entries = List(
+      Menu("Home") / "index"
+    ) ::: Customer.menus
 
 
     LiftRules.uriNotFound.prepend(NamedPF("404handler") {
