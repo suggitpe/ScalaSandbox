@@ -1,9 +1,27 @@
 package org.suggs.sandbox.web.auction.model
 
 import net.liftweb.mapper._
+import scala.xml.NodeSeq
+import net.liftweb.sitemap.Loc.LocGroup
 
-object Supplier extends Supplier with LongKeyedMetaMapper[Supplier] {
+object Supplier
+  extends Supplier
+  with LongKeyedMetaMapper[Supplier]
+  with CRUDify[Long, Supplier] {
   override def dbTableName = "suppliers"
+
+  override def pageWrapper(body: NodeSeq) =
+    <lift:surround with="admin" at="content">
+      {body}
+    </lift:surround>
+
+  override def calcPrefix = List("admin", _dbTableNameLC)
+
+  override def displayName = "Supplier"
+
+  override def showAllMenuLocParams = LocGroup("admin") :: Nil
+
+  override def createMenuLocParams = LocGroup("admin") :: Nil
 }
 
 class Supplier extends LongKeyedMapper[Supplier]

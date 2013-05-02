@@ -8,6 +8,7 @@ import net.liftweb._
 import mapper.{Schemifier, DB, StandardDBVendor, DefaultConnectionIdentifier}
 import util.Props
 import org.suggs.sandbox.web.auction.model._
+import net.liftweb.sitemap.Loc.LocGroup
 
 
 class Boot {
@@ -33,7 +34,9 @@ class Boot {
 
     // build sitemap
     val entries = List(
-      Menu("Home") / "index"
+      Menu("Home") / "index" >> LocGroup("public"),
+      Menu("Admin") / "admin" / "index" >> LocGroup("admin"),
+      Menu("Suppliers") / "admin" / "suppliers" >> LocGroup("admin") submenus (Supplier.menus: _*)
     ) ::: Customer.menus
 
 
